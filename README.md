@@ -30,6 +30,71 @@ To ensure the delivery layer remains entirely pixel-perfect from the master imag
 2. **Discrete Integer Locomotion:** Sub-pixel positioning matrices are explicitly prohibited. The spatial delta vector (Δ X, Δ Y) applied to the viewport coordinate system per frame index must evaluate to absolute whole integers. Any fractional offsets that trigger hardware bilinear or bicubic texture filtering will invalidate the pixel-perfection constraint.
 3. **Multi-Asset Splicing Support:** The architecture seamlessly scales from a single gargantuan asset to an array of independent master photos. The spatial path can transition cleanly from tracking coordinates on one canvas to tracking coordinates on a completely separate master canvas on a per-frame boundary, maintaining the exact same hardware-accelerated pipeline.
 
+## 🛑 Why This Is NOT Ken Burns
+
+To a standard content creator, "panning and zooming across a high-res photo" sounds exactly like the classic **Ken Burns Effect** found in every consumer video editor. 
+
+**Architecturally, Spatial Digiscope is the exact opposite of Ken Burns.**
+
+| Feature | The Ken Burns Effect (Standard Video) | Spatial Digiscope (This Blueprint) |
+| :--- | :--- | :--- |
+| **Fidelity Profile** | **Lossy & Stretched.** The software takes a digital canvas and stretches, shrinks, or downsamples it to fit a video frame. | **1:1 Pixel-Perfect.** No digital scaling. A 1080p window isolates raw, unscaled pixels cell-for-cell from the source. |
+| **Motion Matrix** | **Sub-Pixel Interpolation.** Viewport paths use fractional math (e.g., `X: 10.45`), forcing the engine to blur adjacent pixels together to fake smooth motion. | **Discrete Integer Locomotion.** The viewport shifts *only* by absolute whole integers (e.g., exactly 2 pixels). No pixels are ever blended or anti-aliased. |
+| **Visual Output** | **Soft/Blunt Graphics.** Sharp lines, text, or fine textures become fuzzy or introduce "shimmering" artifacts during motion. | **Microscopic Precision.** Acts like an electron microscope. Moving objects stay mathematically razor-sharp, with **zero display jitter**. |
+| **Data Scope** | **Extremely Limited.** Capped by what standard editing timelines can render before crashing or severely compressing the canvas. | **Virtually Infinite.** Can seamlessly map a 100-hour continuous flight over a massive NASA gigapixel matrix across multiple assets. |
+
+### In Short:
+Ken Burns is a **software visual effect** designed to fake camera movement over a compressed picture. **Spatial Digiscope is a raw hardware injection pipeline** that treats a video container as a spatial coordinate delivery bus, feeding a television's native ASIC decoder perfect, unblurred slices of data.
+
+## 🚫 Why Commercial Editing Software Natively Fails
+
+If a content creator attempts to build this using commercial video editors (like Premiere Pro, After Effects, or Final Cut), the software will actively destroy the pixel perfection of the image space.
+
+1. **Forced Sub-Pixel Interpolation (Blur):** Standard video editors are designed for fluid, organic motion. When you animate a position keyframe, the software moves the viewport using fractional floating-point numbers (e.g., shifting X by `10.45` pixels). To do this, the engine runs bilinear/bicubic resampling, blending neighboring pixels together. This introduces immediate anti-aliasing blur to the master image. 
+2. **The Render Buffer Bottleneck:** Standard timelines force you to drop a massive image onto a fixed-resolution timeline. Commercial apps will immediately downsample the massive master image in memory to fit their preview/render constraints, discarding the rich gigapixel detail before the export even begins.
+3. **Chroma Discarding:** Consumer export presets in these applications automatically compress outputs to standard formats that throw away color resolution to save space, ruining sharp edges and technical details.
+
+The **Spatial Digiscope** pipeline completely bypasses these timeline software limitations by directly and mathematically mapping raw, discrete source coordinates to isolated destination cells, achieving a level of pure fidelity that commercial video software cannot replicate.
+
+## 🎮 Dual Operating Modes: Interactive Controller vs. Passive Visual Journey
+
+The architecture naturally supports two distinct consumer deployment methods, maintaining flawless, absolute pixel-perfection across both states.
+
+### 1. The Interactive Digiscope (Real-Time Hardware Navigation)
+What makes this system a true **Digiscope** is how the consumer interactively scans an image: **You use your standard TV remote control as a mechanical navigation joystick.**
+
+Because the video container's timeline has been completely mapped to a **2D physical space grid**, pressing buttons on your TV remote directly manipulates your coordinates on the massive image canvas in real time.
+
+*   **Input Layer:** The consumer presses the directional D-Pad or navigation buttons on a standard IR/Bluetooth TV remote control.
+*   **Buffer Processing:** The consumer application intercepts these native hardware signals and bypasses traditional video playback states.
+*   **Hardware Execution:** The TV's built-in ASIC hardware video decoder performs an instantaneous frame-seek, executing a perfect 1:1 pixel jump with zero latency.
+
+The video file remains permanently **paused**, and the remote input instantly changes the video's buffer index to a specific frame number. Because the TV's built-in ASIC hardware video chip handles the buffer jump, scanning across a massive 100-Gigapixel image canvas reacts with **zero latency, zero buffering spinners, and zero interface lag**.
+
+### 2. The Automated Passive Video (Pure Pixel-Perfect Exhibition)
+If user input is removed, you can simply hit "Play" and use the architecture as a **completely hands-off, automated cinematic experience.** 
+
+Because the spatial flight path is baked directly into the video container, you simply sit back and let the viewport pan across the source image exactly how the packaging was done. 
+
+*   **The Ambient Experience:** It transforms the television into an ultra-high-resolution, zero-jitter ambient art piece.
+*   **Zero Jitter & Zero Sub-Pixel Compression:** Because the raw pixels are delivered without sub-pixel shifting or compression blur, the movement is flawlessly clean. You just watch the unscaled source image glide smoothly across the display.
+*   **Pure Viewing Enjoyment:** This turns the TV into an ultimate gallery window, allowing consumers to simply enjoy the pixel-perfect image delivery as a mesmerizing, high-fidelity spatial journey.
+
+
+## 💡 The "Explain Like I'm 5" For Content Creators
+
+Imagine you have a **100-Megapixel photo** (like a massive aerial landscape or a gigantic digital painting) and you want a viewer to see a liquid-smooth cinematic camera flight zooming into the microscopic details on a regular TV.
+
+### The Old, Broken Way:
+You load the giant photo into video editing software, manually animate scale/position keyframes, and export it. 
+* **The Result:** The software interpolates sub-pixels, making fine lines look fuzzy during movement. When played on a Smart TV, the TV's processor lags, creating micro-stutters and motion jitter. It ruins the pixel-perfection of your original high-res photo.
+
+### The Spatial Digiscope Way:
+Instead of forcing a TV to struggle with an animated timeline, you slice out a sequence of raw, unscaled **1:1 pixel windows** (e.g., exactly 1920x1080) moving across your giant photo by absolute whole numbers (no sub-pixels). You wrap this sequence into a standard video file.
+* **The Result:** The TV thinks it is just playing a normal video, completely bypassing its weak image processor. Its built-in video hardware decodes it at a rock-solid 60 frames per second. 
+* **The Illusion:** Because a 1080p window isolates a tiny microscopic region of your giant master photo, stretching that window across a massive physical TV screen acts like a **powerful hardware microscope**. You get massive, crystal-clear magnification with absolutely zero blur and zero jitter.
+
+
 ## ⚖️ Attribution & Licensing
 
 This architectural blueprint and pattern are licensed under the **Creative Commons Attribution 4.0 International License (CC BY 4.0)**. 
