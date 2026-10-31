@@ -1,5 +1,7 @@
 # Image Serialization with Sliding Window Encoding
 
+An image delivery method via modern streaming infrastructure—where video is strictly the transport layer.
+
 An architectural broadcasting blueprint and still image delivery protocol that repurposes standard video encapsulation to deliver ultra-high-resolution static imagery as a fluid, unscaled spatial crop stream.
 
 The .mp4 / H.264 wrapper is not an artistic timeline; it is the universal wire format that guarantees direct-to-ASIC hardware decoding on virtually any consumer endpoint.
