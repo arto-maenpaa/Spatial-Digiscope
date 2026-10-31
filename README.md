@@ -1,6 +1,6 @@
-# Spatial Digiscope: Zero-Jitter, Pixel-Perfect Image Space Delivery via Video Containers
+# Sliding Window Encoding over Video Capsulation (Spatial Digiscope)
 
-An architectural broadcasting blueprint that repurposes standard video encapsulation to deliver ultra-high-resolution static imagery as a fluid, unscaled spatial crop stream, transforming any consumer display into a hardware-accelerated digital microscope.
+An architectural broadcasting blueprint and still image delivery protocol that repurposes standard video encapsulation to deliver ultra-high-resolution static imagery as a fluid, unscaled spatial crop stream.
 
 ## 🤔 What is Image Space Delivery?
 
