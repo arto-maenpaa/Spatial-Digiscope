@@ -1,6 +1,8 @@
-# Sliding Window Encoding over Video Capsulation (Spatial Digiscope)
+# Image Serialization with Sliding Window Encoding
 
 An architectural broadcasting blueprint and still image delivery protocol that repurposes standard video encapsulation to deliver ultra-high-resolution static imagery as a fluid, unscaled spatial crop stream.
+
+The .mp4 / H.264 wrapper is not an artistic timeline; it is the universal wire format that guarantees direct-to-ASIC hardware decoding on virtually any consumer endpoint.
 
 ## 🤔 What is Image Space Delivery?
 
@@ -24,8 +26,6 @@ By separating the payload from temporal constraints, this blueprint unlocks infi
 
 ## 📐 Core Engineering Specifications
 
-To ensure the delivery layer remains entirely pixel-perfect from the master image data to the physical television panel, implementations must strictly enforce the following structural criteria:
-
 1. **1:1 Native Frame Constraints:** The delivery video container resolution must perfectly match the native raster layout of the target panel (e.g., exactly 1920x1080). The spatial extraction window scaled from the master canvas must match this resolution cell-for-cell.
 2. **Discrete Integer Locomotion:** Sub-pixel positioning matrices are explicitly prohibited. The spatial delta vector (Δ X, Δ Y) applied to the viewport coordinate system per frame index must evaluate to absolute whole integers. Any fractional offsets that trigger hardware bilinear or bicubic texture filtering will invalidate the pixel-perfection constraint.
 3. **Multi-Asset Splicing Support:** The architecture seamlessly scales from a single gargantuan asset to an array of independent master photos. The spatial path can transition cleanly from tracking coordinates on one canvas to tracking coordinates on a completely separate master canvas on a per-frame boundary, maintaining the exact same hardware-accelerated pipeline.
@@ -48,7 +48,7 @@ Ken Burns is a **software visual effect** designed to fake camera movement over 
 
 ## 🚫 Why Commercial Editing Software Natively Fails
 
-If a content creator attempts to build this using commercial video editors (like Premiere Pro, After Effects, or Final Cut), the software will actively destroy the pixel perfection of the image space.
+Commercial NLEs are built for cinematic playback and temporal effects, whereas this pipeline is built for deterministic coordinate transmission of high-density still data
 
 1. **Forced Sub-Pixel Interpolation (Blur):** Standard video editors are designed for fluid, organic motion. When you animate a position keyframe, the software moves the viewport using fractional floating-point numbers (e.g., shifting X by `10.45` pixels). To do this, the engine runs bilinear/bicubic resampling, blending neighboring pixels together. This introduces immediate anti-aliasing blur to the master image. 
 2. **The Render Buffer Bottleneck:** Standard timelines force you to drop a massive image onto a fixed-resolution timeline. Commercial apps will immediately downsample the massive master image in memory to fit their preview/render constraints, discarding the rich gigapixel detail before the export even begins.
@@ -67,9 +67,7 @@ Because the video container's timeline has been completely mapped to a **2D phys
 
 *   **Input Layer:** The consumer presses the directional D-Pad or navigation buttons on a standard IR/Bluetooth TV remote control.
 *   **Buffer Processing:** The consumer application intercepts these native hardware signals and bypasses traditional video playback states.
-*   **Hardware Execution:** The TV's built-in ASIC hardware video decoder performs an instantaneous frame-seek, executing a perfect 1:1 pixel jump with zero latency.
-
-The video file remains permanently **paused**, and the remote input instantly changes the video's buffer index to a specific frame number. Because the TV's built-in ASIC hardware video chip handles the buffer jump, scanning across a massive 100-Gigapixel image canvas reacts with **zero latency, zero buffering spinners, and zero interface lag**.
+*   **Hardware Execution:** The TV's built-in ASIC hardware video decoder performs an instantaneous frame-seek, executing a perfect 1:1 pixel jump.
 
 ### 2. The Automated Passive Video (Pure Pixel-Perfect Exhibition)
 If user input is removed, you can simply hit "Play" and use the architecture as a **completely hands-off, automated cinematic experience.** 
